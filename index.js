@@ -7,7 +7,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = '';
+require('dotenv').config();
+const PRIVATE_APP_ACCESS = process.env.HUBSPOT_ACCESS_TOKEN;
 
 app.get('/', async (req, res) => {
     const url = 'https://api.hubapi.com/crm/v3/objects/2-144466597?properties=name,country,image_url,website,opening_date';
