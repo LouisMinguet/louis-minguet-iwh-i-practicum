@@ -2,27 +2,44 @@ doctype html
 html
   head
     title= title
+    style.
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+      }
+      img {
+        max-width: 100px;
+      }
   body
     h1= title
 
     a(href="/update-cobj") Add to this table
 
     if parks.length
-      table(border='1')
+      table
         thead
           tr
             th Name
             th Country
             th Website
-            th Image URL
+            th Image
             th Opening Date
         tbody
           each park in parks
             tr
               td= park.properties.name
               td= park.properties.country
-              td: a(href=park.properties.website)= park.properties.website
-              td: img(src=park.properties.image_url, alt="park image", width="100")
+              td
+                if park.properties.website
+                  a(href=park.properties.website target="_blank")= park.properties.website
+                else
+                  | -
+              td
+                if park.properties.image_url
+                  img(src=park.properties.image_url alt="park image")
+                else
+                  | No image
               td= park.properties.opening_date
     else
-      p No parks available.
+      p No parks to display.
