@@ -31,32 +31,33 @@ app.get('/update-cobj', (req, res) => {
 });
 
 app.post('/update-cobj', async (req, res) => {
-    const { name, country, image_url, website, opening_date } = req.body;
+  const { name, country, image_url, website, opening_date } = req.body;
 
-    const url = 'https://api.hubapi.com/crm/v3/objects/parks';
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    };
+  const url = 'https://api.hubapi.com/crm/v3/objects/2-144466597';
+  const headers = {
+    Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+    'Content-Type': 'application/json'
+  };
 
-    const data = {
-        properties: {
-            name,
-            country,
-            image_url,
-            website,
-            opening_date    
-        }
-    };
-
-    try {
-        await axios.post(url, data, { headers });
-        res.redirect('/');
-    } catch (error) {
-        console.error('Error creating park: ', error.message);
-        res.status(500).send('Error creating park');
+  const data = {
+    properties: {
+      name,
+      country,
+      image_url,
+      website,
+      opening_date
     }
+  };
+
+  try {
+    await axios.post(url, data, { headers });
+    res.redirect('/');
+  } catch (error) {
+    console.error('Error creating park:', error);
+    res.status(500).send('Error creating park');
+  }
 });
+
 
 
 /** 

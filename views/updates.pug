@@ -7,4 +7,21 @@ html
 
     a(href="/") Return to the homepage
 
-    //- Le formulaire sera ajouté à l'étape suivante (POST)
+    form(action="/update-cobj" method="POST")
+      div
+        label(for="name") Name:
+        input(type="text" name="name" required)
+      div
+        label(for="country") Country:
+        input(type="text" name="country")
+      div
+        label(for="website") Website:
+        input(type="url" name="website")
+      div
+        label(for="image_url") Image URL:
+        input(type="url" name="image_url")
+      div
+        label(for="opening_date") Opening Date:
+        input(type="date" name="opening_date")
+      div
+        button(type="submit") Submit
